@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: CesarV\Helpers
+        psr4_prefix: CesarV\Helpers

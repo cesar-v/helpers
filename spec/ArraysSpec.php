@@ -23,4 +23,24 @@ class ArraysSpec extends ObjectBehavior
         
         static::pluck('element', $subject)->shouldReturn(array('A', 'B', 'C', 'D'));
     }
+    
+    function it_should_get_value()
+    {
+        $subject = array(
+            'val1' => 1,
+            'val2' => 2,
+        );
+        
+        static::get($subject, 'val2')->shouldReturn(2);
+    }
+    
+    function it_should_default_if_value_doesnt_exsist()
+    {
+        static::get(array(), 'notthere', 'default')->shouldReturn('default');
+    }
+    
+    function it_should_get_value_or_fail()
+    {
+        $this->shouldThrow('OutOfBoundsException')->duringGetOrFail(array(), 'not there');
+    }
 }

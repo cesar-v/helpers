@@ -35,4 +35,40 @@ class Arrays
         
         return $return;
     }
+    
+    /**
+     * Get a value out of an array
+     * 
+     * @param array $subject
+     * @param string $key 
+     * @param mixed $default Value to return if key doesn't exist
+     * @return mixed
+     */
+    public static function get($subject, $key, $default = null)
+    {
+        if ( ! isset($subject[$key]))
+        {
+            return $default;
+        }
+        
+        return $subject[$key];
+    }
+    
+    /**
+     * Get a value out of an array or fail
+     * 
+     * @param array $subject
+     * @param string $key
+     * @return mixed
+     * @throws \OutOfBoundsException
+     */
+    public static function getOrFail($subject, $key)
+    {
+        if ( ! isset($subject[$key]))
+        {
+            throw new \OutOfBoundsException('Key not found: ' . $key);
+        }
+        
+        return $subject[$key];
+    }
 }
